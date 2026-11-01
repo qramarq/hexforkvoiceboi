@@ -1,0 +1,18 @@
+[workspace]
+
+[package]
+name = "voiceboi-chunk"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+description = "Alloc-free sentence splitter and Meshtastic-sized frame codec"
+
+# Size measurement profile. Not the default; tests use the dev profile.
+[profile.min]
+inherits = "release"
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
