@@ -1,0 +1,21 @@
+[workspace]
+
+[package]
+name = "voiceboi-tts"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+description = "Text-in, framed-audio-out TTS scaffold. No speech model."
+
+[dependencies]
+voiceboi-chunk = { path = "../voiceboi-chunk" }
+
+# Same size profile as voiceboi-chunk. Tests use the dev profile.
+[profile.min]
+inherits = "release"
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
