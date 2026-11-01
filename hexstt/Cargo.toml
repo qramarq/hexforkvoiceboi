@@ -1,0 +1,24 @@
+[workspace]
+
+[package]
+name = "hexstt"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Headless STT harness: the transcribe.cpp core of Hex (anomalyco/hex) without the desktop app"
+
+[dependencies]
+# Same pinned transcribe.cpp as Hex 3.1.1. CPU only: no Metal/Vulkan (Pi 5 has no usable Vulkan compute for this).
+transcribe-cpp = { git = "https://github.com/anomalyco/transcribe.cpp", rev = "7045d1c0fe7cee37747b2792977421d435e75fca", default-features = false }
+
+[profile.release]
+strip = true
+
+# Size-tuned profile: `cargo build --profile min`
+[profile.min]
+inherits = "release"
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
